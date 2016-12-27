@@ -17,8 +17,29 @@ class Rational(n: Int, d: Int) {
       denom * that.denom
     )
 
+  def + (i: Int): Rational =
+    new Rational(numer + i * denom, denom)
+
+  def - (that: Rational): Rational =
+    new Rational(
+      numer * that.denom - that.numer * denom,
+      denom * that.denom
+    )
+
+  def - (i: Int): Rational =
+    new Rational(numer - i * denom, denom)
+
   def * (that: Rational): Rational =
     new Rational(numer * that.numer, denom * that.denom)
+
+  def * (i: Int): Rational =
+    new Rational(numer * i, denom)
+
+  def / (that: Rational): Rational =
+    new Rational(numer * that.denom, denom * that.numer)
+
+  def / (i: Int): Rational =
+    new Rational(numer, denom * i)
 
   def lessThan(that: Rational) =
     this.numer * that.denom < that.numer * this.denom
@@ -42,3 +63,6 @@ println(s"With default denominator: $defaultDenominator")
 
 val reducedForm = new Rational(66, 42)
 println(s"Reduced Form of 66/42: $reducedForm")
+
+val operatingWithInt = reducedForm * 2
+println(s"66/42 * 2 = $operatingWithInt")
