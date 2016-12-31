@@ -14,4 +14,5 @@ def grep(pattern: String) =
     if trimmed.matches(pattern)
   } println(file + ": " + trimmed)
 
+
 grep(".*gcd.*")
