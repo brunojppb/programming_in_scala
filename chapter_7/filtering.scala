@@ -4,11 +4,14 @@ def fileLines(file: java.io.File) =
   scala.io.Source.fromFile(file).getLines().toList
 
 def grep(pattern: String) =
-  for(
+  for {
     file <- filesHere
-    if file.getName.endsWith(".scala");
+    if file.getName.endsWith(".scala")
     line <- fileLines(file)
-    if line.trim.matches(pattern)
-  ) println(file + ": " + line.trim)
+    // new variable to prevent useless computation
+    // trimmed works as a val
+    trimmed = line.trim
+    if trimmed.matches(pattern)
+  } println(file + ": " + trimmed)
 
 grep(".*gcd.*")
